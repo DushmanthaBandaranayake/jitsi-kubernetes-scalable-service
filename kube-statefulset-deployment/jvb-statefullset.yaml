@@ -1,0 +1,59 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: jvb
+  namespace: jitsi
+spec:
+  serviceName: "jvb" #Do not use '-' in name.
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jvb
+  template:
+    metadata:
+      labels:
+        app: jvb
+    spec:
+      containers:
+        - name: jvb
+          image: jitsi/jvb:1.0.0
+          imagePullPolicy: Always
+          #volumeMounts:
+          #  - name: jvb
+          #    mountPath: /home/jitsi-config/jvb/pv
+          env:
+            - name: XMPP_SERVER
+              value: 10.34.0.2  #--------UPDATE THIS-------------#
+            - name: DOCKER_HOST_ADDRESS
+              value: 192.168.4.202
+            - name: XMPP_DOMAIN
+              value: meet.jitsi
+            - name: XMPP_AUTH_DOMAIN
+              value: auth.meet.jitsi
+            - name: XMPP_INTERNAL_MUC_DOMAIN
+              value: internal-muc.meet.jitsi
+            - name: JVB_STUN_SERVERS
+              value: stun.l.google.com:19302,stun1.l.google.com:19302,stun2.l.google.com:19302
+            - name: JICOFO_AUTH_USER
+              value: focus
+            - name: JVB_TCP_HARVESTER_DISABLED
+              value: "true"
+            - name: JVB_AUTH_USER
+              value: jvb
+            #- name: JVB_PORT This will be automaticall assigned in run time starting from 30000
+            #  value: "30310"
+            - name: JVB_ENABLE_APIS
+              value: rest,colibri
+            - name: JVB_AUTH_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: jitsi-config
+                  key: JVB_AUTH_PASSWORD
+            - name: JICOFO_AUTH_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: jitsi-config
+                  key: JICOFO_AUTH_PASSWORD
+            - name: JVB_BREWERY_MUC
+              value: jvbbrewery

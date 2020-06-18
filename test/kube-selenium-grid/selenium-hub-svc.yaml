@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: selenium-hub
+  namespace: selenium-grid
+  labels:
+    app: selenium-hub
+spec:
+  ports:
+    - port: 4444
+      targetPort: 4444
+      name: port0
+      NodePort: 31299
+  selector:
+    app: selenium-hub
+  type: NodePort
+  sessionAffinity: None

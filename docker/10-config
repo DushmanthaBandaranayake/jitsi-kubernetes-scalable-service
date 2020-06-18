@@ -1,0 +1,33 @@
+#!/usr/bin/with-contenv bash
+
+if [[ -z $JVB_AUTH_PASSWORD ]]; then
+    echo 'FATAL ERROR: JVB auth password must be set'
+    exit 1
+fi
+
+OLD_JVB_AUTH_PASSWORD=passw0rd
+if [[ "$JVB_AUTH_PASSWORD" == "$OLD_JVB_AUTH_PASSWORD" ]]; then
+    echo 'FATAL ERROR: JVB auth password must be changed, check the README'
+    exit 1
+fi
+
+if [[ ! -f /config/sip-communicator.properties ]]; then
+
+     echo "SETTING JVB_PORT..."
+
+     echo "HOST NAME:" "$HOSTNAME"
+     IFS='-' read -ra ADDR <<< "$HOSTNAME"
+     let jvb_port=$((31000+${ADDR[1]}))
+     export JVB_PORT="$jvb_port"
+     echo $JVB_PORT
+     echo "========JVB_PORT:""$JVB_PORT""=================="
+
+    tpl /defaults/sip-communicator.properties > /config/sip-communicator.properties
+fi
+
+if [[ ! -f /config/logging.properties ]]; then
+    cp /defaults/logging.properties /config
+fi
+
+chown -R jvb:jitsi /config
+
