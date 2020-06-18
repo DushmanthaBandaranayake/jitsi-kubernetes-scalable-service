@@ -1,5 +1,7 @@
 # jitsi-kubernetes-scalable-service
 
+kubernetes deployment for scalable video bridges
+
 `1. kubectl create namespace jitsi`
 
 `2. kubectl apply -f jvb-statefullset.yaml`
