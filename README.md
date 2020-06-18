@@ -2,10 +2,14 @@
 
 kubernetes deployment for scalable video bridges
 
-`1. kubectl create namespace jitsi`
+`1. build docker image`
 
-`2. kubectl apply -f jvb-statefullset.yaml`
+``docker build . -t jitsi/jvb:1.0.0``
 
-`3. kubectl apply -f service.yaml`
+`2 kubectl create namespace jitsi`
 
-`4. kubectl apply -f web-jicofo-prosody.yaml`
+`3. kubectl apply -f jvb-statefullset.yaml`
+
+`4. kubectl apply -f service.yaml`
+
+`5. kubectl apply -f web-jicofo-prosody.yaml`
