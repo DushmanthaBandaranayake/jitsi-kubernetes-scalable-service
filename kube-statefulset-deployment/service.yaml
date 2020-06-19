@@ -23,11 +23,11 @@ spec:
     k8s-app: jitsi
   type: NodePort
 ---
-#service for jvbs
-#create service for jvb upd access on kubernetes Nodeport starting with 30000.
+# service for jvbs
+# create service for jvb upd access on kubernetes Nodeport starting with 30000.
 # Make sure NodePorts between 30000-30005 are available on your kube cluster.
-#update this if you need JVBs more than 5.
-#JVB-0
+# update this if you need JVBs more than 6.
+# JVB-0
 apiVersion: v1
 kind: Service
 metadata:
