@@ -1,0 +1,1 @@
+selenium hub for kubernetes. can use this to test k8 jitsi deployment with https://github.com/jitsi/jitsi-meet-torture .
