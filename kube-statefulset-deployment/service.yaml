@@ -1,4 +1,4 @@
-# @author dushmanthab99@gmail.net
+# @author dushmanthab99@gmail.com
 # service for web
 apiVersion: v1
 kind: Service
@@ -24,7 +24,8 @@ spec:
   type: NodePort
 ---
 #service for jvbs
-#create service for jvb upd access on kubernetes Nodeport starting with 30000
+#create service for jvb upd access on kubernetes Nodeport starting with 30000.
+# Make sure NodePorts between 30000-30005 are available on your kube cluster.
 #update this if you need JVBs more than 5.
 #JVB-0
 apiVersion: v1
@@ -144,7 +145,7 @@ spec:
   externalTrafficPolicy: Cluster
   ports:
     - port: 31005
-      name:  jvb-4
+      name:  jvb-5
       protocol: UDP
       targetPort: 31005
       nodePort: 31005
