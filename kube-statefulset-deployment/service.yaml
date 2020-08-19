@@ -24,8 +24,8 @@ spec:
   type: NodePort
 ---
 # service for jvbs
-# create service for jvb upd access on kubernetes Nodeport starting with 30000.
-# Make sure NodePorts between 30000-30005 are available on your kube cluster.
+# create service for jvb upd access on kubernetes Nodeport starting with 31000.
+# Make sure NodePorts between 31000-31005 are available on your kube cluster.
 # update this if you need JVBs more than 6.
 # JVB-0
 apiVersion: v1
